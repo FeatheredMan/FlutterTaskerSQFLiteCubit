@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.database_bloc">
-   <application
-        android:label="database_bloc"
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:label="Tasker"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

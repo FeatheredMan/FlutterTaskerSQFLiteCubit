@@ -63,10 +63,10 @@ class _FeedState extends State<Feed> {
                 }
                 final taskdata = snapshot.data;
                 return ListView.separated(
+                  padding: EdgeInsets.symmetric(horizontal: 6,vertical: 4),
                   itemCount: taskdata?.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
                     final item = taskdata[index];
-
                     return Dismissible(
                       key: Key("task"),
                       onDismissed: (direction) {
@@ -79,15 +79,20 @@ class _FeedState extends State<Feed> {
                       },
                       background: Container(color: Colors.red),
                       child: ListTile(
-                        contentPadding: const EdgeInsets.all(10),
+                        contentPadding: const EdgeInsets.all(8),
                         selectedTileColor: Colors.amberAccent,
-                        tileColor: Colors.blueGrey,
-                        title: Text(taskdata[index].title),
-                        subtitle: Column(
+                        tileColor: Colors.pink,
+                        title: Text(taskdata[index].title,style :TextStyle(fontSize: 22,
+                            color: Colors.amber ,fontWeight:FontWeight.w600),),
+                        subtitle: Column(mainAxisAlignment: MainAxisAlignment.center,
+
                           children: [
-                            Text(taskdata[index].description),
+                            Text(taskdata[index].description, style:
+                            TextStyle(fontSize: 18,color: Colors.white ,fontWeight:
+                            FontWeight.w600),),
                             SizedBox(height: 5),
-                            Text(taskdata[index].date),
+                            Text(taskdata[index].date ,style :TextStyle(fontSize: 14,
+                                color: Colors.indigo ,fontWeight:FontWeight.w400),),
                           ],
                         ),
                         onLongPress: () {

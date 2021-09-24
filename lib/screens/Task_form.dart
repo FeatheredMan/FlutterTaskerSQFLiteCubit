@@ -24,7 +24,7 @@ class _FoodFormState extends State<TaskForm> {
       // print("id = $id");
       Task insertTask = new Task(id ,titleController.text,
           description: descriptionController.text,
-          date: dateTime.format(AmericanDateFormats.dayOfWeek).toString()
+          date: dateTime.format(AmericanDateTimeFormats.abbrExtended).toString()
           // level:levelController.text , type: typeController.text
           );
       print("One Task module is created");

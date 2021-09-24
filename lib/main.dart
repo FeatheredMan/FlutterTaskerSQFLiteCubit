@@ -56,9 +56,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: _selectedIndex == 0 ? Colors.redAccent : Colors.pink,
+        backgroundColor: _selectedIndex == 0 ? Colors.redAccent :Colors.pink,
         title: const Text(
-          'Your digital memory',
+          'Tasker'
         ),
       ),
       body: BlocProvider(
@@ -77,8 +77,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.add_to_queue_rounded),
-                    label: 'Business',
-                    backgroundColor: Colors.pink,
+                    label: 'Tasks',
+                    backgroundColor: Colors.amber,
                   ),
                   // BottomNavigationBarItem(
                   // icon: Icon(Icons.school),
