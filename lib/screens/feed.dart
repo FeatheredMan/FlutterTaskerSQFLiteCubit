@@ -78,131 +78,134 @@ class _FeedState extends State<Feed> {
                             SnackBar(content: Text('$item dismissed')));
                       },
                       background: Container(color: Colors.red),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(8),
-                        selectedTileColor: Colors.amberAccent,
-                        tileColor: Colors.pink,
-                        title: Text(taskdata[index].title,style :TextStyle(fontSize: 22,
-                            color: Colors.amber ,fontWeight:FontWeight.w600),),
-                        subtitle: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      child: ClipRect(
+                        clipBehavior: Clip.hardEdge,
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(8),
+                          selectedTileColor: Colors.amberAccent,
+                          tileColor: Colors.pink,
+                          title: Text(taskdata[index].title,style :TextStyle(fontSize: 22,
+                              color: Colors.amber ,fontWeight:FontWeight.w600),),
+                          subtitle: Column(mainAxisAlignment: MainAxisAlignment.center,
 
-                          children: [
-                            Text(taskdata[index].description, style:
-                            TextStyle(fontSize: 18,color: Colors.white ,fontWeight:
-                            FontWeight.w600),),
-                            SizedBox(height: 5),
-                            Text(taskdata[index].date ,style :TextStyle(fontSize: 14,
-                                color: Colors.indigo ,fontWeight:FontWeight.w400),),
-                          ],
-                        ),
-                        onLongPress: () {
-                          titleController.text = item.title;
-                          descriptionController.text = item.description;
-                          showDialog<String>(
-                            context: context,
-                            builder: (BuildContext context) =>
-                                SingleChildScrollView(
-                              child: AlertDialog(
-                                title: const Text("What's new"),
-                                content: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Text(
-                                            "Title :",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.amber,
-                                                fontWeight: FontWeight.w800),
+                            children: [
+                              Text(taskdata[index].description, style:
+                              TextStyle(fontSize: 18,color: Colors.white ,fontWeight:
+                              FontWeight.w600),),
+                              SizedBox(height: 5),
+                              Text(taskdata[index].date ,style :TextStyle(fontSize: 14,
+                                  color: Colors.indigo ,fontWeight:FontWeight.w400),),
+                            ],
+                          ),
+                          onLongPress: () {
+                            titleController.text = item.title;
+                            descriptionController.text = item.description;
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  SingleChildScrollView(
+                                child: AlertDialog(
+                                  title: const Text("What's new"),
+                                  content: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            flex: 3,
+                                            child: Text(
+                                              "Title :",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.amber,
+                                                  fontWeight: FontWeight.w800),
+                                            ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 5,
-                                          child: TextFormField(
-                                            decoration: InputDecoration(
-                                                labelText: "Title"),
-                                            keyboardType: TextInputType.text,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.blueAccent,
-                                                fontWeight: FontWeight.w700),
-                                            controller: titleController,
-                                            validator: (String value) {
-                                              if (value.isEmpty) {
-                                                return 'Title is required';
-                                              }
-                                              return null;
+                                          Expanded(
+                                            flex: 5,
+                                            child: TextFormField(
+                                              decoration: InputDecoration(
+                                                  labelText: "Title"),
+                                              keyboardType: TextInputType.text,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.blueAccent,
+                                                  fontWeight: FontWeight.w700),
+                                              controller: titleController,
+                                              validator: (String value) {
+                                                if (value.isEmpty) {
+                                                  return 'Title is required';
+                                                }
+                                                return null;
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 2),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            flex: 3,
+                                            child: Text(
+                                              "Description :",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.amber,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 5,
+                                            child: TextFormField(
+                                              keyboardType:
+                                                  TextInputType.multiline,
+                                              maxLines: 8,
+                                              maxLength: 1000,
+                                              decoration: InputDecoration(
+                                                  labelText: "description"),
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.blueAccent,
+                                                  fontWeight: FontWeight.w700),
+                                              controller: descriptionController,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+
+                                      SizedBox(height: 2),
+
+                                      //there is two raised button need {Style}
+                                      Row(
+                                        children: [
+                                          RaisedButton(
+                                            child: Text('Cancel'),
+                                            onPressed: () {
+                                              Navigator.pop(context, 'Cancel');
                                             },
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 2),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Text(
-                                            "Description :",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.amber,
-                                                fontWeight: FontWeight.w700),
+                                          RaisedButton(
+                                            child: Text('Update'),
+                                            onPressed: () {
+                                              OnUpdate(item.id);
+                                              Navigator.pop(context, 'OK');
+                                            },
                                           ),
-                                        ),
-                                        Expanded(
-                                          flex: 5,
-                                          child: TextFormField(
-                                            keyboardType:
-                                                TextInputType.multiline,
-                                            maxLines: 8,
-                                            maxLength: 1000,
-                                            decoration: InputDecoration(
-                                                labelText: "description"),
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                color: Colors.blueAccent,
-                                                fontWeight: FontWeight.w700),
-                                            controller: descriptionController,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-
-                                    SizedBox(height: 2),
-
-                                    //there is two raised button need {Style}
-                                    Row(
-                                      children: [
-                                        RaisedButton(
-                                          child: Text('Cancel'),
-                                          onPressed: () {
-                                            Navigator.pop(context, 'Cancel');
-                                          },
-                                        ),
-                                        RaisedButton(
-                                          child: Text('Update'),
-                                          onPressed: () {
-                                            OnUpdate(item.id);
-                                            Navigator.pop(context, 'OK');
-                                          },
-                                        ),
-                                      ],
-                                    )
-                                  ],
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     );
                   },

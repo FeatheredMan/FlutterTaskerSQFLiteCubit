@@ -1,4 +1,6 @@
 import 'package:database_cubit/models/task.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -28,7 +30,6 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     print("created  database sqflite");
     return _database;
   }
-
 
   Future<Database> createDatabase() async {
     String dbPath = await getDatabasesPath();
@@ -64,20 +65,32 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       taskList.add(task);
     });
     print(taskList);
+    Fluttertoast.showToast(
+        msg: "Awesome !",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.amberAccent,
+        textColor: Colors.white,
+        fontSize: 16.0);
     // emit(DatabaseGetState());
     return taskList;
   }
-
-
 
   insert(Task task) async {
     final db = await database;
     final i = await db.insert(TABLE_task, task.toMap());
     emit(DatabaseAddState());
+    Fluttertoast.showToast(
+        msg: "Inserted !",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.amberAccent,
+        textColor: Colors.white,
+        fontSize: 16.0);
     return i;
   }
-
-
 
   Future<int> delete(int id) async {
     final db = await database;
@@ -88,10 +101,16 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     );
     print("One Item deleted");
     emit(DatabaseDeleteState());
+    Fluttertoast.showToast(
+        msg: "Removed !",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.amberAccent,
+        textColor: Colors.white,
+        fontSize: 16.0);
     return d;
   }
-
-
 
   Future<int> update(Task task, int id) async {
     print('============= $id');
@@ -103,6 +122,14 @@ class DatabaseCubit extends Cubit<DatabaseState> {
       whereArgs: [id],
     );
     emit(DatabaseUpdateState());
+    Fluttertoast.showToast(
+        msg: "Updated !",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.amberAccent,
+        textColor: Colors.white,
+        fontSize: 16.0);
     return u;
   }
 }
